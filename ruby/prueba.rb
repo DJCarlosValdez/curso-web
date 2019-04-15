@@ -1,6 +1,7 @@
 # variable = test | CONSTANTE = test
 # Se define un symbol :nombre
 # Se define un hash con => o :
+# Se vale multiplicar un string por un int
 
 puts "CUAL ES TU PRIMER NOMBRE?"
 
