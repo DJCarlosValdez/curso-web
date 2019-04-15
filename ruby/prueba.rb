@@ -9,6 +9,8 @@
 
 # tambien se peuede ocupar {} en lugar de end
 
+# para añadir a un contador +=
+
 puts "CUAL ES TU PRIMER NOMBRE?"
 
 primer_nombre = gets.chomp
