@@ -3,6 +3,12 @@
 # Se define un hash con => o :
 # Se vale multiplicar un string por un int
 
+# def method_name (para1, para2) 
+# para3 = para1 + para2
+# end
+
+# tambien se peuede ocupar {} en lugar de end
+
 puts "CUAL ES TU PRIMER NOMBRE?"
 
 primer_nombre = gets.chomp
