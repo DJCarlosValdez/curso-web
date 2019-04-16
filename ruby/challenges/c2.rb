@@ -55,20 +55,18 @@
 
 # user(input)
 
-# -------------------------------------------------------------------------------------------------------------------------------
+# --------------------------------------- Smallest Challenge -------------------------------------------------------------
 
 def create_array ()
     inputs = 0
     passed_string = ""
     array = []
     loop do
-        puts "Ingresa un strig para el array"
+        puts 'Ingresa un strig para el array. Escribe "Ya" cuando hayas acabado.'
         passed_string = gets.chomp
         break if passed_string == "Ya"
-        p array << passed_string
-        p inputs += 1
+        array << passed_string
     end 
-    p inputs
     array
 end
 
@@ -81,35 +79,21 @@ def order_array (array1, array2)
     array1.each do |x|
         x << "##{x.size}"
     end
-    p array1
     i=1
     loop do 
         array1.each_with_index do |x, index|
-            p index
-            p x
-            puts "dentro each array1"
             if x.include? "##{i}"
-                puts "dentro if each array1"
-                puts "item split"
-                p item = x.split("#")
-                puts "item"
-                p item
-                puts "array2"
-                p array2 << item[0]
+                item = x.split("#")
+                array2 << item[0]
             end
-            puts "Array 1: #{array1}"
-            p array2
         end
         i += 1
-        p i
         break if array1.size == array2.size
     end
     array2
 end
 
 def shortest(a1, a2) 
-    puts a1
-    puts a2
     array3 = order_array(a1, a2)
     final_array = []
     array3.each do |x|
@@ -117,7 +101,10 @@ def shortest(a1, a2)
             final_array << x
         end
     end
-    p final_array
+    puts "Ingresaste estos valores: #{array3}"
+    puts "Estos son los valores más pequeños: #{final_array}"
 end
 
 shortest(array1, array2)
+
+# --------------------------------------- Longest Challenge -------------------------------------------------------------
