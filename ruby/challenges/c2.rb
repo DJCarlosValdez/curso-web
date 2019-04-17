@@ -73,7 +73,6 @@
 
 # array1 = create_array()
 # array2 = []
-<<<<<<< HEAD
 
 
 # def order_array (array1, array2)
@@ -109,72 +108,23 @@
 # shortest(array1, array2)
 
 # --------------------------------------- Longest Challenge -------------------------------------------------------------
-
-# def longest ()
-    
-# end
-
-# --------------------------------------- Vocals Challenge -------------------------------------------------------------
-
-def vocals (string) 
-    p string.include? /[aeiou]/
-end
-
-vocals("awenimomu")
-=======
-
-
-# def order_array (array1, array2)
-#     array1.each do |x|
-#         x << "##{x.size}"
-#     end
-#     i=1
-#     loop do 
-#         array1.each_with_index do |x, index|
-#             if x.include? "##{i}"
-#                 item = x.split("#")
-#                 array2 << item[0]
+# def longest (array) 
+#     array_size = array.size
+#     array1 = []
+#     random = Random.new
+#     divider= random.rand(0..array_size) 
+#     i = 0
+#     loop do
+#         array.each_with_index do |x, index|
+#             if index > divider
+#                 x.index
 #             end
-#         end
-#         i += 1
-#         break if array1.size == array2.size
+#     break array1.size == array_size
+#         divider= random.rand(0..array_size)         
 #     end
-#     array2
+
 # end
 
-# def shortest(a1, a2) 
-#     array3 = order_array(a1, a2)
-#     final_array = []
-#     array3.each do |x|
-#         if x.size == array3[0].size
-#             final_array << x
-#         end
-#     end
-#     puts "Ingresaste estos valores: #{array3}"
-#     puts "Estos son los valores más pequeños: #{final_array}"
-# end
-
-# shortest(array1, array2)
-
-# --------------------------------------- Longest Challenge -------------------------------------------------------------
-def longest (array) 
-    array_size = array.size
-    array1 = []
-    random = Random.new
-    divider= random.rand(0..array_size) 
-    i = 0
-    loop do
-        array.each_with_index do |x, index|
-            if index > divider
-                x.index
-        end
-    break array1.size == array_size
-        divider= random.rand(0..array_size)         
-    end
-
-end
-
-p longest(['tres', 'pez', 'alerta', 'cuatro', 'tesla', 'tropas', 'siete']) == ["alerta", "cuatro", "tropas"]
-p longest(['gato', 'perro', 'elefante', 'jirafa']) == ["elefante"]
-p longest(['verde', 'rojo', 'negro', 'morado']) == ["morado"]
->>>>>>> 02df3d5d6afb05f1be2e73b38b5f52e2d252b7ec
+# p longest(['tres', 'pez', 'alerta', 'cuatro', 'tesla', 'tropas', 'siete']) == ["alerta", "cuatro", "tropas"]
+# p longest(['gato', 'perro', 'elefante', 'jirafa']) == ["elefante"]
+# p longest(['verde', 'rojo', 'negro', 'morado']) == ["morado"]
