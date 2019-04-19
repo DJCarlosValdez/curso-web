@@ -210,30 +210,31 @@
 
 # --------------------------------------- Private Challenge -------------------------------------------------------------
 
-class Person
-    # attr_reader(:age)
-    def initialize (name, born_year)
-        @name = name
-        @born_year = born_year
-    end
+# class Person
+#     # attr_reader(:age)
+#     def initialize (name, born_year)
+#         @name = name
+#         @born_year = born_year
+#     end
 
-    def age 
-        years_old
-        p"#{@name} is #{@age} years old"
-    end
+#     def age 
+#         years_old
+#         p"#{@name} is #{@age} years old."
+#     end
 
-    private 
+#     private 
 
-    def years_old
-        p t = Time.new.year
-        @age = t - @born_year
-    end
-end
+#     def years_old
+#         p t = Time.new.year
+#         @age = t - @born_year
+#     end
+# end
 
-carlos = Person.new("Carlos",1989)
-martha = Person.new("Martha",1993)
+# carlos = Person.new("Carlos",1989)
+# martha = Person.new("Martha",1993)
 
-p carlos.age == "Carlos is 30 years old."
-#=>true
-p martha.age == "Martha is 26 years old."
-#=>true
+# p carlos.age == "Carlos is 30 years old."
+# #=>true
+# p martha.age == "Martha is 26 years old."
+# #=>true
+
