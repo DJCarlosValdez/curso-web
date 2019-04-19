@@ -37,7 +37,7 @@ def no_yelling (string)
     array2 = array1
     symbols = "a"
     array1.each_with_index do |x, i|
-        if x == ! || x == ?
+        if x == "!" || x == "?"
             if !symbols.include?(x)
                 symbols = x
             end
@@ -45,7 +45,7 @@ def no_yelling (string)
             array2.delete_at(1)
         end
     end
-    p array2.reverse!
+    p array2.reverse!.join
 end
 
 
