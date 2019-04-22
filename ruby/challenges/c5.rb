@@ -104,13 +104,9 @@
 
 # --------------------------------------- Dictionary Challenge -------------------------------------------------------------
 
+# def dictionary_sort
+#     input_original = gets.chomp.split("#")
+#     p input_original.sort_by!{|x| x.downcase}
+# end
 
-def dictionary_sort
-    input_original = gets.chomp.split("#")
-    # array1.each_with_index do |x, i|
-    #     p array1[i] = array_original[i]
-    # end
-    p array1
-end
-
-dictionary_sort()
+# dictionary_sort()
