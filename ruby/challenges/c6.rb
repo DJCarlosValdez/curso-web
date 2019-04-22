@@ -125,36 +125,38 @@
 
 # --------------------------------------- Binary Challenge -------------------------------------------------------------
 
-def binary_search (num, array)
-    midpoint = 0
-    look_arr = array.sort
-    i = 0
-    index = nil
+# def binary_search (num, array)
+#     midpoint = 0
+#     look_arr = array.sort
+#     i = 0
+#     index = nil
 
-    return nil if num > array.last
+#     return nil if num > array.last
     
-    loop do
-        midpoint = look_arr.size / 2
-        if (num >= look_arr[midpoint] && look_arr.size != 1)
-            look_arr = look_arr.drop(midpoint)
-            i += 1
-        elsif (num < look_arr[midpoint] && look_arr.size != 1)
-            look_arr = look_arr.take(midpoint)
-            i += 1
-        elsif (look_arr.size == 1)
-            index = array.find_index(look_arr[0])
-            break
-        end
-    end
+#     loop do
+#         midpoint = look_arr.size / 2
+#         if (num >= look_arr[midpoint] && look_arr.size != 1)
+#             look_arr = look_arr.drop(midpoint)
+#             i += 1
+#         elsif (num < look_arr[midpoint] && look_arr.size != 1)
+#             look_arr = look_arr.take(midpoint)
+#             i += 1
+#         elsif (look_arr.size == 1)
+#             index = array.find_index(look_arr[0])
+#             break
+#         end
+#     end
 
-    index
+#     index
 
-end
+# end
 
-p binary_search(1, [1]) == 0
-p binary_search(4, [1,2,3]) == nil
-p binary_search(4, [1,2,3,4,5]) == 3
-p binary_search(6, [1,2,3,4,5,6,7,8,9]) == 5
-p binary_search(2, [1,2,3,5,6,7,8,9,10,11]) == 1
-p binary_search(5, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) == 4
-binary_search(7, [1,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
+# p binary_search(1, [1]) == 0
+# p binary_search(4, [1,2,3]) == nil
+# p binary_search(4, [1,2,3,4,5]) == 3
+# p binary_search(6, [1,2,3,4,5,6,7,8,9]) == 5
+# p binary_search(2, [1,2,3,5,6,7,8,9,10,11]) == 1
+# p binary_search(5, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) == 4
+# binary_search(7, [1,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
+
+# --------------------------------------- Binary Challenge -------------------------------------------------------------
