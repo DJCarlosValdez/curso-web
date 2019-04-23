@@ -164,11 +164,12 @@
 
 
 class Board
+
 # You should put here the given boards templates
-@@boards_templates =  "AMEOPXCXPOEMAXSXAMEOPCMXDXIXXNROXXOXNXXR"
+@@boards_templates =  "POEMAXCXXOXAXXSXNXEAXCMXDXIMXNROXXOXAXXR"
 @@words = ["POEMA", "CANCION", "RONDAS", "RIMAS"]
 @@template = []
-@@vertical = {
+@@columns = {
     0 => [],
     1 => [],
     2 => [],
@@ -180,12 +181,32 @@ class Board
 }
 
 @@rows = {
+    0 => nil,
+    1 => nil,
+    2 => nil,
+    3 => nil,
+    4 => nil
+}
+
+@@diag_x = {
+    0 => [],
+    1 => [],
+    2 => [],
+    3 => [],
+    4 => [],
+    5 => [],
+    6 => []
+}
+
+@@diag_y = {
     0 => [],
     1 => [],
     2 => [],
     3 => [],
     4 => []
 }
+
+
 
 def initialize
     
@@ -198,32 +219,33 @@ def print_board
     end
 end
 
-def look_vertical
+def look_columns
     i = 0 
     loop do
         @@template.each do |x|
-            @@vertical[i] << x[i]
+            @@columns[i] << x[i]
         end
         i += 1
         break if i == 8
     end
-
     @@words.each do |x|
-        @@vertical.each_key do |y|
-            if (@@vertical[y].join.include?(x))
+        @@columns.each_key do |y|
+            if (@@columns[y].join.include?(x))
                 puts "La palabra: #{x}, esta en la columna: #{y+1}"
-            elsif (@@vertical[y].join.reverse.include?(x))
+            elsif (@@columns[y].join.reverse.include?(x))
                 puts "La palabra: #{x}, esta en la columna: #{y+1}. Pero esta al revés"
             end
         end
+
     end
+    p @@columns
 end
 
 def look_horizontal
     i = 0
 
     @@template.each do |x|
-        @@rows[i] << x.split(//)
+        @@rows[i] = x.split(//)
         i += 1
     end
 
@@ -238,6 +260,102 @@ def look_horizontal
     end
 end
 
+def look_diagonal_y
+    # Las columnas son x y las filas son y.
+    x = 0
+    y = 0
+    max_y = 4
+    loop do 
+        p "begin"
+        # En cada fila va a buscar los caracteres que esten en diagonal 
+        # y colocarlos en su respectivo array dentro de un hash.
+        @@rows.each_key do
+            puts "voy a volver a empezar each do en #{y}"
+            puts "voy a jalar la letra en = #{x}. la voy a jalar de: #{@@rows[x+y]}"
+            puts "en #{@@diag_y[y]} le voy a añadir #{@@rows[x + y][x]}"
+            # Agrega los caracteres en diagonal al array de su respectivo hash.
+            p @@diag_y[y] << @@rows[x + y][x]
+            puts "ahora en la siguiente vuelta voy a jalar #{x}"
+            # Aqui define si llego a la ultima fila o si debe continuar descendiendo.
+            if max_y - y == x
+                # Ultima Fila.
+                x = 0     
+                puts "reinicie x a #{x}"
+                y += 1
+                puts "en la siguiente vuelta voy a escribir en #{y}."
+            else
+                # Continuar descendiendo.
+                x += 1
+            end
+        end
+
+        # Rompe el loop si ha pasado por todas las diagonales en Y.
+        break if y == max_y + 1
+        
+    end
+
+    puts "las diagonales son : #{@@diag_y}"
+
+    # Busca si alguna palabra se encunetra en alguna de las diagonales al derecho o al revés.
+
+    @@words.each do |x|
+        @@diag_y.each_key do |z|
+            if (@@diag_y[z].join.include?(x))
+                puts "La palabra: #{x}, esta en la fila: #{z+1}"
+            elsif (@@diag_y[z].join.reverse.include?(x))
+                puts "La palabra: #{x}, esta en la fila: #{z+1}. Pero esta al revés"
+            end
+        end
+    end
+end
+
+def look_diagonal_x
+    # Las columnas son x y las filas son y.
+    x = 1
+    y = 0
+    key = 0
+    max_y = 4
+    max_x = 7
+    turn = 0
+
+    # En cada fila va a buscar los caracteres que esten en diagonal 
+    # y colocarlos en su respectivo array dentro de un hash.
+
+    loop do 
+        p "begin"
+        @@rows.each_key do
+            puts "voy a volver a empezar each do en #{y}"
+            puts "voy a jalar la letra en = #{x}. la voy a jalar de: #{@@rows[y]}"
+            puts "en #{@@diag_x[key]} le voy a añadir #{@@rows[y][x]}"
+            # Agrega los caracteres en diagonal al array de su respectivo hash.
+            p @@diag_x[key] << @@rows[y][x]
+            puts "ahora en la siguiente vuelta voy a jalar #{x + 1}"
+            # Aqui define si llego a la ultima columna o si debe continuar descendiendo.
+            if max_y - y == 0 || x == 7
+                turn += 1
+                x = 1 + turn   
+                key += 1
+                y = 0
+                puts "en la siguiente vuelta voy a empezar en x: #{x}. y escribir en el key #{key}"
+            else
+                x += 1
+                y += 1
+            end
+        end
+        break if key == 7
+    end
+    puts "las diagonales son : #{@@diag_x}"
+    @@words.each do |a|
+        @@diag_x.each_key do |z|
+            if (@@diag_x[z].join.include?(a))
+                puts "La palabra: #{a}, esta en la fila: #{z+1}"
+            elsif (@@diag_x[z].join.reverse.include?(a))
+                puts "La palabra: #{a}, esta en la fila: #{z+1}. Pero esta al revés"
+            end
+        end
+    end
+end
+
 private
 end
 
@@ -247,8 +365,10 @@ end
 
 board = Board.new
 board.print_board
-board.look_vertical
+board.look_columns
 board.look_horizontal
+board.look_diagonal_y
+board.look_diagonal_x
 
 # [["POEMA", "CANCION", "RONDAS", "RIMAS"],"POEMAXCXXXXAXXSXNXAAXCMXDXIXXNROXXOXNXXR"]
 # [["MANGO", "SANDIA", "MELON", "PLATANO"],"XXXXPXXXXLXAMXAXIEXTXDLXAXNOXNMANGOXSXXX"]
