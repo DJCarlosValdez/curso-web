@@ -159,4 +159,97 @@
 # p binary_search(5, [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]) == 4
 # binary_search(7, [1,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20])
 
-# --------------------------------------- Binary Challenge -------------------------------------------------------------
+# --------------------------------------- Crossword Challenge -------------------------------------------------------------
+
+
+
+class Board
+# You should put here the given boards templates
+@@boards_templates =  "AMEOPXCXPOEMAXSXAMEOPCMXDXIXXNROXXOXNXXR"
+@@words = ["POEMA", "CANCION", "RONDAS", "RIMAS"]
+@@template = []
+@@vertical = {
+    0 => [],
+    1 => [],
+    2 => [],
+    3 => [],
+    4 => [],
+    5 => [],
+    6 => [],
+    7 => []
+}
+
+@@rows = {
+    0 => [],
+    1 => [],
+    2 => [],
+    3 => [],
+    4 => []
+}
+
+def initialize
+    
+end
+
+def print_board
+    @@template = @@boards_templates.scan(/.{1,8}/)
+    @@template.each do |x|
+        p x
+    end
+end
+
+def look_vertical
+    i = 0 
+    loop do
+        @@template.each do |x|
+            @@vertical[i] << x[i]
+        end
+        i += 1
+        break if i == 8
+    end
+
+    @@words.each do |x|
+        @@vertical.each_key do |y|
+            if (@@vertical[y].join.include?(x))
+                puts "La palabra: #{x}, esta en la columna: #{y+1}"
+            elsif (@@vertical[y].join.reverse.include?(x))
+                puts "La palabra: #{x}, esta en la columna: #{y+1}. Pero esta al revés"
+            end
+        end
+    end
+end
+
+def look_horizontal
+    i = 0
+
+    @@template.each do |x|
+        @@rows[i] << x.split(//)
+        i += 1
+    end
+
+    @@words.each do |x|
+        @@rows.each_key do |y|
+            if (@@rows[y].join.include?(x))
+                puts "La palabra: #{x}, esta en la fila: #{y+1}"
+            elsif (@@rows[y].join.reverse.include?(x))
+                puts "La palabra: #{x}, esta en la fila: #{y+1}. Pero esta al revés"
+            end
+        end
+    end
+end
+
+private
+end
+
+# def complete_board!
+#     #Este método debe rellenar un tablero incompleto, en otras palabras cambiar las "x" por letras random.
+# end
+
+board = Board.new
+board.print_board
+board.look_vertical
+board.look_horizontal
+
+# [["POEMA", "CANCION", "RONDAS", "RIMAS"],"POEMAXCXXXXAXXSXNXAAXCMXDXIXXNROXXOXNXXR"]
+# [["MANGO", "SANDIA", "MELON", "PLATANO"],"XXXXPXXXXLXAMXAXIEXTXDLXAXNOXNMANGOXSXXX"]
+# [["ROJO", "VERDE", "AZUL", "NEGRO"],"OJORXXXXXXXEXXOXDXRXXRGLXXEXUXNVXZXXXXAX"]
