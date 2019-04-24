@@ -206,7 +206,24 @@ class Board
     4 => []
 }
 
+@@diag_x_back = {
+    0 => [],
+    1 => [],
+    2 => [],
+    3 => [],
+    4 => [],
+    5 => [],
+    6 => [],
+    7 => []
+}
 
+@@diag_y_back = {
+    0 => [],
+    1 => [],
+    2 => [],
+    3 => [],
+    4 => []
+}
 
 def initialize
     
@@ -356,6 +373,63 @@ def look_diagonal_x
     end
 end
 
+def look_diagonal_y_back
+    k = 0
+    loop do
+        i = k
+        j = 0
+        
+        while (i >= 0)
+            puts "#{i}, #{j}"
+            @@diag_y_back[k] << @@columns[i][j]
+            i = i - 1
+            j = j + 1
+        end
+        k += 1
+        break if k == 5
+    end
+
+    k = 0
+    
+    if 8 - 5 - 1 > 0 
+        j = 7 - (8 - 5 - 1)
+        loop do
+            i = 0
+            while (i <= 4)
+                puts "#{i}, #{j}"
+                @@diag_x_back[k] << @@columns[j][i]
+                p @@diag_x_back
+                i = i + 1
+                j = j - 1
+            end
+            j = 7 - (8 - 5 - 1) 
+            j += 1
+            k += 1
+            break if k == 2
+        end
+    end
+end
+
+
+def look_diagonal_x_back
+    k = 3
+    loop do
+        puts "dentro del loop Diag X Back"
+        i = 4
+        j = k
+        
+        while (j <= 7)
+            puts "#{i}, #{j}"
+            @@diag_x_back[k] << @@columns[j][i]
+            p @@diag_x_back
+            i = i - 1
+            j = j + 1
+        end
+        k += 1
+        break if k == 8
+    end
+end
+
 private
 end
 
@@ -367,8 +441,8 @@ board = Board.new
 board.print_board
 board.look_columns
 board.look_horizontal
-board.look_diagonal_y
-board.look_diagonal_x
+board.look_diagonal_y_back
+board.look_diagonal_x_back
 
 # [["POEMA", "CANCION", "RONDAS", "RIMAS"],"POEMAXCXXXXAXXSXNXAAXCMXDXIXXNROXXOXNXXR"]
 # [["MANGO", "SANDIA", "MELON", "PLATANO"],"XXXXPXXXXLXAMXAXIEXTXDLXAXNOXNMANGOXSXXX"]
